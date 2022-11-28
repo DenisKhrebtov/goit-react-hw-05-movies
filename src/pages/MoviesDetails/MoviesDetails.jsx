@@ -1,4 +1,4 @@
-import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { getFilmInfo } from '../../api/api';
 
