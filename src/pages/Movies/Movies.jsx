@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Form } from 'components/Form/Form';
-import { useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 
 import { fetchFilmsByName } from '../../api/api';
 import { Loader } from 'components/Loader';
