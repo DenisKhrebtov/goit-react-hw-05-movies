@@ -4,9 +4,11 @@ import { useParams } from 'react-router-dom';
 
 import { getFilmCast } from '../../api/api';
 
-import { URL } from '../../constanse/imageUrl';
+import { URL } from '../../constanсe/imageUrl';
 
 import noPhoto from '../../img/noimage.webp';
+
+import { List, ListItem, Avatar } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -33,18 +35,18 @@ const Cast = () => {
       {isLoading && <Loader />}
       {error && <p>Sorry no information about cast</p>}
       {error === false && (
-        <ul>
-          {actors.map(({ name, profile_path, characters }) => (
-            <li key={name}>
-              <img
+        <List>
+          {actors.map(({ name, profile_path, character }) => (
+            <ListItem key={name}>
+              <Avatar
                 src={profile_path ? URL + profile_path : noPhoto}
                 alt={name}
               />
               <p>{name}</p>
-              <p>Characters: {characters}</p>
-            </li>
+              <p>Characters: {character}</p>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
     </div>
   );

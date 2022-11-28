@@ -5,6 +5,8 @@ import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import { fetchFilmsByName } from '../../api/api';
 import { Loader } from 'components/Loader';
 
+import { MainBox, List, Item, LinkFilms } from './Movies.styled';
+
 const Movies = () => {
   const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
@@ -19,8 +21,7 @@ const Movies = () => {
 
   const onSubmit = newQuery => {
     if (query === newQuery) {
-      return;
-      //alert same one
+      return alert('You already have it');
     }
     setQuery(newQuery);
     setSearchParam(newQuery !== '' ? { q: newQuery } : {});
@@ -56,24 +57,28 @@ const Movies = () => {
   }, [query]);
 
   return (
-    <div>
+    <MainBox>
       <Form onSubmit={onSubmit} />
       {isLoading && <Loader />}
-
-      {error === true ? (
-        <p>No results</p>
-      ) : (
-        <ul>
-          {films.map(film => (
-            <li key={film.id}>
-              <Link to={`${currentPath}${film.id}`} state={{ from: location }}>
-                <p>{film.title}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      <div>
+        {error === true ? (
+          <p>No results</p>
+        ) : (
+          <List>
+            {films.map(film => (
+              <Item key={film.id}>
+                <LinkFilms
+                  to={`${currentPath}${film.id}`}
+                  state={{ from: location }}
+                >
+                  <p>{film.title}</p>
+                </LinkFilms>
+              </Item>
+            ))}
+          </List>
+        )}
+      </div>
+    </MainBox>
   );
 };
 

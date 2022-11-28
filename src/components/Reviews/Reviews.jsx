@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { getFilmReviews } from '../../api/api';
 
+import { List, ListItem, Author, Content } from './Reviews.styled';
+
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
@@ -30,14 +32,14 @@ const Reviews = () => {
       {isLoading && <Loader />}
       {error && <p>We dont have any reviews for this movie</p>}
       {error === false && (
-        <ul>
+        <List>
           {reviews.map(({ author, content }) => (
-            <li key={author}>
-              <p>Author: {author}</p>
-              <p>{content}</p>
-            </li>
+            <ListItem key={author}>
+              <Author>Author: {author}</Author>
+              <Content>{content}</Content>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
     </div>
   );

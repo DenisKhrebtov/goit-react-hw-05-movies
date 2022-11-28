@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 import { fetchTrendFilms } from '../../api/api';
+
+import { Title, MainBox, List, LinkFilms } from './Home.styled';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
@@ -13,18 +16,21 @@ const Home = () => {
   }, []);
 
   return (
-    <main>
-      <h1>Trending today</h1>
-      <ul>
+    <MainBox>
+      <Title>Trending today</Title>
+      <List>
         {films.map(film => (
           <li key={film.id}>
-            <Link to={`${currentPath}${film.id}`} state={{ from: location }}>
+            <LinkFilms
+              to={`${currentPath}${film.id}`}
+              state={{ from: location }}
+            >
               <p>{film.title}</p>
-            </Link>
+            </LinkFilms>
           </li>
         ))}
-      </ul>
-    </main>
+      </List>
+    </MainBox>
   );
 };
 
