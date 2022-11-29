@@ -14,9 +14,15 @@ export async function fetchTrendFilms() {
 
 export async function fetchFilmsByName(query) {
   try {
-    const response = await axios.get(
-      `search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
-    );
+    const response = await axios.get(`search/movie?api_key=${API_KEY}`, {
+      params: {
+        language: `en-US`,
+        query: query,
+        page: 1,
+        include_adult: false,
+      },
+    });
+
     return response.data.results;
   } catch (error) {
     console.error(error);
@@ -25,9 +31,11 @@ export async function fetchFilmsByName(query) {
 
 export async function getFilmInfo(filmId) {
   try {
-    const response = await axios.get(
-      `movie/${filmId}?api_key=${API_KEY}&language=en-US`
-    );
+    const response = await axios.get(`movie/${filmId}?api_key=${API_KEY}`, {
+      params: {
+        language: `en - US`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -37,7 +45,12 @@ export async function getFilmInfo(filmId) {
 export async function getFilmCast(filmId) {
   try {
     const response = await axios.get(
-      `movie/${filmId}/credits?api_key=${API_KEY}&language=en-US`
+      `movie/${filmId}/credits?api_key=${API_KEY}`,
+      {
+        params: {
+          language: `en - US`,
+        },
+      }
     );
     return response.data.cast;
   } catch (error) {
@@ -48,7 +61,13 @@ export async function getFilmCast(filmId) {
 export async function getFilmReviews(filmId) {
   try {
     const response = await axios.get(
-      `movie/${filmId}/reviews?api_key=${API_KEY}&language=en-US&page=1`
+      `movie/${filmId}/reviews?api_key=${API_KEY}`,
+      {
+        params: {
+          language: `en - US`,
+          page: 1,
+        },
+      }
     );
     return response.data.results;
   } catch (error) {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Form } from 'components/Form/Form';
 import { useSearchParams, useLocation } from 'react-router-dom';
 
-import { fetchFilmsByName } from '../../api/api';
+import { fetchFilmsByName } from 'api/api';
 import { Loader } from 'components/Loader';
 
 import { MainBox, List, Item, LinkFilms } from './Movies.styled';
